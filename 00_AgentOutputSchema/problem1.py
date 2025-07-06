@@ -31,7 +31,7 @@ class TaskDetails(BaseModel):
 
 agent = Agent(
     name = "Task Extractor",
-    instructions = "Extract task name, priority level (High, Medium, Low) and due-date from the input text.",
+    instructions = "Extract task name, priority level (High, Medium, Low) and due-date from the input text",
     model = model,
     output_type = AgentOutputSchema(output_type = TaskDetails)
 )
