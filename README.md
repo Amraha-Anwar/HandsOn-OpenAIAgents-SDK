@@ -19,4 +19,4 @@ It's my personal code lab for practicing and understanding the **OpenAI Agents S
 - Async I/O patterns
 - Pydantic (data validation)
 - Gemini-API-key
--
+- SDK
