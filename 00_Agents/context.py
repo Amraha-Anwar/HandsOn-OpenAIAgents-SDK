@@ -52,3 +52,12 @@ result = Runner.run_sync(
 )
 
 print(result.final_output)
+
+
+# OUTPUT 👇🏻
+
+# Here are the details of the user:
+# UserName: Amraha
+# UserID: 2301
+# Gender: Female
+# Is Fresher : True
