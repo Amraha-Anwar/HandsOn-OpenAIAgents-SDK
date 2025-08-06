@@ -36,10 +36,17 @@ agent = Agent[UserInfo](
     model = model
 )
 
-result = Runner.run_syn(
+result = Runner.run_sync(
     agent,
     "What do you know about me?",
     context = user_info
 )
 
 print(result.final_output)
+
+
+# OUTPUT 👇🏻
+
+# I know your name is **Amraha** and you are **18 years old**.
+
+# That's the only personal information I've been given about you!
