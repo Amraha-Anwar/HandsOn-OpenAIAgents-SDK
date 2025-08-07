@@ -68,7 +68,8 @@ movie_recommender = Agent(
     name = "Movie Recommender Agent",
     instructions = "You are a movie recommender agent. Take genre from user's input statement and suggest him 5 best  movies of that genre.",
     handoff_description = "Recommends movies on an specific genre.",
-    model = model
+    model = model,
+    hooks = TestAgentHook(agent_name="customer support agent")
 )
 
 agent = Agent[myInfo](
@@ -86,8 +87,8 @@ context: myInfo = myInfo(name = "Amraha", profession = "Agentic AI Developer")
 async def main():
     await Runner.run(
         agent,
-        "What do you know about me?",
-        "",
+        # "What do you know about me?",
+        "I'm feeling bored. Suggest me some horror movies.",
         context = context
     )
 
@@ -126,3 +127,40 @@ asyncio.run(main())
 
 # SCENARIO 2
 # --------------------------------------
+
+# customer support Agent 1
+# Customer support Agent Started!
+# USAGE:
+#         INPUT TOKENS: 0
+#         OUTPUT TOKENS: 0
+#         TOTAL TOKENS USED: 0
+
+
+# customer support Agent 2
+# Customer support Agent handed off to Movie Recommender Agent
+
+
+# customer support agent 1
+# Movie Recommender Agent Started!
+# USAGE:
+#         INPUT TOKENS: 142
+#         OUTPUT TOKENS: 18
+#         TOTAL TOKENS USED: 160
+
+
+# customer support agent 2
+# Movie Recommender Agent Ended with output:
+# Here are 5 horror movies you might enjoy:
+
+# 1.  **The Exorcist (1973)** - A classic for a reason, known for its chilling atmosphere and groundbreaking scares.        
+# 2.  **Hereditary (2018)** - A modern masterpiece of psychological horror, very unsettling and expertly crafted.
+# 3.  **Get Out (2017)** - A brilliant and socially relevant horror film that blends suspense with sharp commentary.        
+# 4.  **The Conjuring (2013)** - A highly effective supernatural horror film based on a true story, full of jump scares and 
+# a creepy atmosphere.
+# 5.  **Alien (1979)** - While often considered sci-fi, it's undeniably a horror film in space, pioneering creature design  
+# and suspense.
+
+# Usage:
+#         INPUT TOKENS: 235
+#         OUTPUT TOKENS: 187
+#         TOTAL TOKENS USED: 422
