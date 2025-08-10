@@ -44,7 +44,7 @@ agent = Agent[info](
     instructions = "Help user with their query. Use tool [myInfo] if user asks anything about his/herself.",
     model = model,
     tools = [myInfo],
-    model_settings = ModelSettings(tool_choice = "auto")
+    model_settings = ModelSettings(tool_choice = "myInfo")
 )
 
 context = info(name = "Amraha", gender = "Female")
