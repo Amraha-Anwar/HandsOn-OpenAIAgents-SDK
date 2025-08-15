@@ -26,7 +26,9 @@ agent = Agent(
     model = model)
 
 async def main():
-    with trace(workflow_name = "conversation"):
+
+    thread_id = "thread_123"
+    with trace(workflow_name = "conversation", group_id = thread_id):
         result = await Runner.run(
             agent,
             "What City is the most populated in Pakistan?"
