@@ -1,4 +1,4 @@
-from agents import Agent, Runner, trace, AsyncOpenAI, OpenAIChatCompletionsModel, set_tracing_disabled
+from agents import Agent, Runner, trace, AsyncOpenAI, OpenAIChatCompletionsModel, set_tracing_disabled, SQLiteSession
 from dotenv import load_dotenv
 import asyncio, os
 
@@ -27,18 +27,24 @@ agent = Agent(
 
 async def main():
 
+    session = SQLiteSession("conversation_123")
+
     thread_id = "thread_123"
+    
     with trace(workflow_name = "conversation", group_id = thread_id):
         result = await Runner.run(
             agent,
-            "What City is the most populated in Pakistan?"
+            "What City is the most populated in Pakistan?",
+            session = session
         )
     print(f"\nTurn 1: First Input\n{result.final_output}")
 
-    new_input = result.to_input_list() + [{"role": "user", "content": "What are the Names of all seasons?"}]
+    # new_input = result.to_input_list() + [{"role": "user", "content": "What are the Names of all seasons?"}]
     result = await Runner.run(
         agent,
-        new_input
+        "What are the names of all seasons?" ,      #agent automatically remembers previous context through session
+        # new_input
+        session = session
     )
     print(f"\nTurn 2: New Input\n{result.final_output}")
 
