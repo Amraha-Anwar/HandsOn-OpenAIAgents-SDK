@@ -29,7 +29,9 @@ result = Runner.run_sync(
     "Hello! This is Amraha. Wish me for my birthday in advance."
 )
 
-print(result.final_output)
+# print(result.final_output)
+print(type(result.final_output))
+
 
 
 # OUTPUT 👇🏻
