@@ -86,3 +86,5 @@ async def main():
 asyncio.run(main())
 
 
+# Input Guardrail didn't trip
+# [InputGuardrailResult(guardrail=InputGuardrail(guardrail_function=<function urdu_guardrial at 0x00000220EC90DF80>, name='urdu_guardrial'), output=GuardrailFunctionOutput(output_info=UrduOutput(is_urdu=False, reasoning='The user\'s prompt "Write a short description of \'Patriotism\'." is entirely in English and contains no indicators or requests for an Urdu response.'), tripwire_triggered=False))]
