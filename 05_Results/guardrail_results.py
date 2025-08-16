@@ -8,7 +8,8 @@ from agents import (
     GuardrailFunctionOutput,
     TResponseInputItem,
     Runner,
-    RunContextWrapper
+    RunContextWrapper,
+    RunConfig
 )
 from pydantic import BaseModel
 from dotenv import load_dotenv
@@ -32,6 +33,11 @@ model = OpenAIChatCompletionsModel(
     openai_client = client
 )
 
+config = RunConfig(
+    model = model,
+    model_provider = client
+)
+
 class UrduOutput(BaseModel):
     is_urdu : bool
     reasoning: str
@@ -50,7 +56,8 @@ async def urdu_guardrial(
     result = await Runner.run(
         guardrail_agent,
         input,
-        context = ctx.context
+        context = ctx.context,
+        run_config = config
     )
     return GuardrailFunctionOutput(
         output_info = result.final_output,
@@ -67,10 +74,15 @@ async def main():
     try:
         result = await Runner.run(
             agent,
-            "Write an essay on 'patriotism' in Urdu."
+            # "Write an essay on 'patriotism' in Urdu.",
+            "Write a short description of 'Patriotism'.",
+            run_config = config
         )
-        print(f"Input Guardrail didn't trip\n\t{result.final_output}")
+        print("Input Guardrail didn't trip")
+        print(result.input_guardrail_results)
     except InputGuardrailTripwireTriggered:
-        print("Input Guardrail Tripped! Input can't include 'URDU'.")
+        print("Input guardrail tripped! Input cannot include 'Urdu'")
 
 asyncio.run(main())
+
+
