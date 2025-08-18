@@ -23,19 +23,19 @@ client = AsyncOpenAI(
 
 model = OpenAIChatCompletionsModel(
     model = MODEL,
-    external_client = client
+    openai_client = client
 )
 
 agent = Agent(
     name = "Personal Assistant",
-    prompt = "You are a user's personal assistant. Help her/him with their queries in a very light mood.",
+    instructions = "You are a user's personal assistant. Help her/him with their queries in a very light mood. Please no long responses only consice ones.",
     model = model
 )
 
 async def main():
-    result = await Runner.run_streamed(
+    result = Runner.run_streamed(
         agent,
-        "I wanna gain my weight, give me a healthy diet plan which helps in weight gain."
+        "I want to gain weight, give me a healthy and budget friendly diet plan which helps in weight gain."
     )
 
     async for event in result.stream_events():
@@ -43,3 +43,17 @@ async def main():
             print(event.data.delta, end="", flush=True)
 
 asyncio.run(main())
+
+
+# OUTPUT 👇🏻
+
+# Hey there! Ready to power up your plate? Here’s a super simple, wallet-friendly plan to help you gain healthy weight:
+
+# *   **Breakfast:** Oatmeal with milk, a banana, and a spoonful of peanut butter. Yum!
+# *   **Mid-morning:** Grab an apple or a small handful of nuts.
+# *   **Lunch:** A good serving of rice/roti, dal (lentils), a veggie, and maybe some chicken/eggs if you're up for it.
+# *   **Evening Snack:** Hard-boiled eggs or a quick smoothie (milk + banana + peanut butter).
+# *   **Dinner:** Similar to lunch – focus on carbs, protein, and veggies.
+# *   **Before Bed:** A warm glass of milk.
+
+# **Key things:** Eat often, don't skip meals, and hydrate! You've got this! ✨
