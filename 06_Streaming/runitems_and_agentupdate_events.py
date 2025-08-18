@@ -1,4 +1,3 @@
-from openai.types.responses import ResponseTextDeltaEvent
 from agents import (
     Agent,
     OpenAIChatCompletionsModel,
@@ -36,8 +35,8 @@ def random_no_of_jokes()-> int:
 
 
 agent = Agent(
-    name = "Joker",
-    instructions = "First call the `how_many_jokes` tool, then tell that many jokes. No lame jokes please.",
+    name = "Assitant",
+    instructions = "Help user with their query. If user asks for jokes call tool [random_no_of_jokes]. Then crack that number of jokes.",
     model = model,
     tools = [random_no_of_jokes]
 )
@@ -51,8 +50,9 @@ async def main():
     print("==== Run Starting =====")
 
     async for event in result.stream_events():
-        # this will ignore the raw response deltas
+        # the raw response deltas
         if event.type == "raw_response_event":
+            # print(event)
             continue
         # when the agent updates, print that
         elif event.type == "agent_updated_stream_event":
