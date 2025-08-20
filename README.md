@@ -23,4 +23,9 @@ It's my personal code lab for practicing and understanding the **OpenAI Agents S
 - Async I/O patterns
 - Pydantic (data validation)
 - Gemini-API-key
+<<<<<<< HEAD
 - 
+=======
+- 
+
+>>>>>>> 4d37c240f8e3f9692f2aec65a47ee656abf3f5a2
