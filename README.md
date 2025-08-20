@@ -8,7 +8,10 @@ It's my personal code lab for practicing and understanding the **OpenAI Agents S
 
 - Agent creation & lifecycle
 - AgentOutputSchema
-
+- AgentOutputSchemaBase
+- Runner (run, run_sync, run_streamed)
+- Streaming (raw_response_events, RunItemsStreamEvents, AgentUpdateStreamEvents)
+- Results
 ---
 
 ## 🛠 Tech Stack
