@@ -14,4 +14,3 @@ agent = Agent(
 async def main():
     result = await Runner.run(agent, "Which coffee shop should I go to, taking into account my preferences and the weather today in SF?")
     print(result.final_output)
-
